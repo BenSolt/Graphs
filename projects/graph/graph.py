@@ -34,7 +34,23 @@ class Graph:
         """
         pass  # TODO
         # make a queue
+        q = Queue()
         # enqueue our starting node
+        q.enqueue(starting_vertex)
+        # make a set to track if we've been here before
+        visited = set()
+        # while our queue is not empty
+        while q.size() > 0:
+        # dequeue whatever is at the front of our line, this is our current_node
+            current_node = q.dequeue()
+        # if we havent visited this node yet,
+            if current_node
+        # mark as visited
+            
+        # get its neighbors
+        # for each of the neighbors
+        # add to queue
+
 
 
     def dft(self, starting_vertex):
@@ -43,6 +59,17 @@ class Graph:
         beginning from starting_vertex.
         """
         pass  # TODO
+        # make a stack
+        # push on our starting node
+        
+        #make a set to track if weve been here before
+        #while stack is not empty
+        # pop off whats on top, this is current_node
+        # if we havnt visited this vertex before 
+        # mark as visited
+        # get its neighbors
+        # for each of the neighbors
+        # add ot our stack
 
     def dft_recursive(self, starting_vertex):
         """
