@@ -33,6 +33,9 @@ class Graph:
         beginning from starting_vertex.
         """
         pass  # TODO
+        # make a queue
+        # enqueue our starting node
+
 
     def dft(self, starting_vertex):
         """
