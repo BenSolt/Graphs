@@ -45,6 +45,8 @@ class SocialGraph:
         # !!!! IMPLEMENT ME
 
         # Add users
+        # MY CODE 
+        for i in range(0, num_users):
 
         # Create friendships
 
