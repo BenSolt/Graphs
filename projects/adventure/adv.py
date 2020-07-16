@@ -25,10 +25,19 @@ world.print_rooms()
 
 player = Player(world.starting_room)
 
-# Fill this out with directions to walk
+# Fill this out with directions to walk 
 # traversal_path = ['n', 'n']
 traversal_path = []
+# MY CODE ====================================================
 
+# directions N,S,W,E
+# return opposite of current direction.
+#EXAMPLE
+# if direction is "north" then return "south".
+
+def backwords(direction):
+    if direction == "n":
+        return "s"
 
 
 # TRAVERSAL TEST

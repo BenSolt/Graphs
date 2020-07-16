@@ -109,15 +109,16 @@ class SocialGraph:
         # while our queue is not empty
         while q.size() > 0:
             # dequeue whatever is at the front of our line, this is our current_node
-            current_node = q.dequeue()
-            new_user = current_node[-1]
+            current_path = q.dequeue()
+            current_user = current_path[-1]
 
-            if new_user not in visited:
-                visited[new_user] = current_node
+            if current_user not in visited:
 
-                for i in self.friendships[new_user]:
+                visited[current_user] = current_path
+
+                for i in self.friendships[current_user]:
                     if i not in visited:
-                        new_node = list(current_node)
+                        new_node = list(current_path)
                         new_node.append(i)
                         q.enqueue(new_node)
 
@@ -129,3 +130,17 @@ if __name__ == '__main__':
     print(sg.friendships)
     connections = sg.get_all_social_paths(1)
     print(connections)
+
+    #sg.populate_graph(10, 2)
+# waht percentage of tatl users are in our extended social network?
+# how many people we know, divided by how many people there are
+
+#print(f'{len(connections)-1 / 1000 * 100}%)
+
+# total_lengths = 0
+# for friend in connections:
+#     total_length += len(connections[friend])
+
+#print(f'Average degree of seperation: {total_lengths / len(connections)}')
+
+# what is the average degree of speration between a user and those in his/her extended network?
