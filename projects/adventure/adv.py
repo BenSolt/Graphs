@@ -89,9 +89,9 @@ def dft_traversal(traversal_path):
                 not_visited.append((room, move))
         #if length of not visited greater than 0
         if len(not_visited) > 0:
-            #add not_visited onto stack
+            #add not_visited onto stack, room, move
             s.push(not_visited[0][0])
-            #attach not visited to traversal path
+            #attach not visited to traversal path, room. direction plus 1?
             traversal_path.append(not_visited[0][1])
         else:
             #remove from stack
