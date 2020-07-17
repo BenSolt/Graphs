@@ -1,3 +1,21 @@
+import random
+
+# MY CODE added queue class
+
+class Queue():
+    def __init__(self):
+        self.queue = []
+    def enqueue(self, value):
+        self.queue.append(value)
+    def dequeue(self):
+        if self.size() > 0:
+            return self.queue.pop(0)
+        else:
+            return None
+    def size(self):
+        return len(self.queue)
+
+
 class User:
     def __init__(self, name):
         self.name = name
@@ -45,8 +63,28 @@ class SocialGraph:
         # !!!! IMPLEMENT ME
 
         # Add users
+        # MY CODE 
+        for i in range(0, num_users):
+            self.add_user(f"User {i}")
 
         # Create friendships
+        # MY CODE
+        possible_friendships = []
+        # MY CODE
+        for user_id in self.users:
+            for friend_id in range(user_id + 1, self.last_id +1):
+                possible_friendships.append((user_id, friend_id))
+        #MY CODE
+        #shuffle possible friendships
+        random.shuffle(possible_friendships)
+
+        #create friendships
+        #divive by 2 since each add friendships creates 2 friends.(friends with each other)
+        for i in range(num_users * avg_friendships //2):
+                                # index location
+            friendship = possible_friendships[i]
+                                #first, second
+            self.add_friendship(friendship[0], friendship[1])
 
     def get_all_social_paths(self, user_id):
         """
@@ -59,8 +97,32 @@ class SocialGraph:
         """
         visited = {}  # Note that this is a dictionary, not a set
         # !!!! IMPLEMENT ME
-        return visited
+        
+        #MY CODE
+        
+        # make a queue
+        q = Queue()
+        # enqueue our starting node
+        q.enqueue([user_id])
+       
 
+        # while our queue is not empty
+        while q.size() > 0:
+            # dequeue whatever is at the front of our line, this is our current_node
+            current_path = q.dequeue()
+            current_user = current_path[-1]
+
+            if current_user not in visited:
+
+                visited[current_user] = current_path
+
+                for i in self.friendships[current_user]:
+                    if i not in visited:
+                        new_node = list(current_path)
+                        new_node.append(i)
+                        q.enqueue(new_node)
+
+        return visited
 
 if __name__ == '__main__':
     sg = SocialGraph()
@@ -68,3 +130,17 @@ if __name__ == '__main__':
     print(sg.friendships)
     connections = sg.get_all_social_paths(1)
     print(connections)
+
+    #sg.populate_graph(10, 2)
+# waht percentage of tatl users are in our extended social network?
+# how many people we know, divided by how many people there are
+
+#print(f'{len(connections)-1 / 1000 * 100}%)
+
+# total_lengths = 0
+# for friend in connections:
+#     total_length += len(connections[friend])
+
+#print(f'Average degree of seperation: {total_lengths / len(connections)}')
+
+# what is the average degree of speration between a user and those in his/her extended network?
